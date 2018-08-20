@@ -3,15 +3,19 @@ import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
+import {AuthComponent} from './auth/auth.component';
+import {AuthService} from './auth/service/auth.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AuthService
   ],
   providers: [],
   bootstrap: [AppComponent]
