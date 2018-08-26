@@ -3,8 +3,18 @@
   <mat-drawer #drawer
               class="main-sidenav"
               mode="side">
-    <p><mat-icon>sentiment_very_satisfied</mat-icon> Be happy! </p>
+    <p class="px-3 pt-3">
+      <mat-icon>sentiment_very_satisfied</mat-icon>
+      Be happy!
+    </p>
 
+    <mat-nav-list>
+
+      <mat-list-item (click)="logout()">
+        Logout
+      </mat-list-item>
+
+    </mat-nav-list>
   </mat-drawer>
 
   <mat-toolbar color="primary">

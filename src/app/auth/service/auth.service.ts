@@ -10,4 +10,8 @@ export class AuthService {
   authenticate(payload) {
     return of(payload);
   }
+
+  logout() {
+    return of('success');
+  }
 }
