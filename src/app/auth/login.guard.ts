@@ -12,12 +12,13 @@ export class LoginGuard implements CanActivate {
   constructor(private store: Store<AuthState>, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
-    return this.store.pipe( select( isLoggedIn ), tap( loggedIn => {
-      debugger
-      if (loggedIn) {
-        this.router.navigate( [ 'private' ] );
+    const payload = { api_key: localStorage.getItem('api_key') };
+
+    return this.store.pipe(select(isLoggedIn), tap(loggedIn => {
+      if (loggedIn || payload.api_key) {
+        this.router.navigate([ 'private' ]);
       }
       return !loggedIn;
-    } ) );
+    }));
   }
 }

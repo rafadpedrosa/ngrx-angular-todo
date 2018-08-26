@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +10,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { LoginGuard } from './auth/login.guard';
 import { PageNotFoundComponent } from './page-not-found-component/page-not-found-component';
@@ -19,17 +21,23 @@ const appRoutes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    canActivate: [ LoginGuard ]
+    canActivate: [
+      LoginGuard
+    ]
   },
   {
     path: '',
     component: AuthComponent,
-    canActivate: [ LoginGuard ]
+    canActivate: [
+      LoginGuard
+    ]
   },
   {
     path: 'private',
     component: PrivateComponent,
-    canActivate: [ AuthGuard ]
+    canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: '**',
@@ -37,23 +45,30 @@ const appRoutes: Routes = [
   }
 ];
 
-@NgModule( {
+@NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     PrivateComponent,
   ],
   imports: [
-    RouterModule.forRoot( appRoutes ),
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
     AuthModule.forRoot(),
-    StoreModule.forRoot( reducers, { metaReducers } ),
+    StoreModule.forRoot(reducers, { metaReducers }),
     BrowserModule,
     BrowserAnimationsModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [ AppComponent ],
   exports: []
-} )
+})
 export class AppModule {
 }
