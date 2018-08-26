@@ -1,3 +1,22 @@
-<h1 style="text-align: center; top: 20px">
-  This is the private page for everything
-</h1>
+<mat-drawer-container class="main-container h-100"
+                      autosize>
+  <mat-drawer #drawer
+              class="main-sidenav"
+              mode="side">
+    <p><mat-icon>sentiment_very_satisfied</mat-icon> Be happy! </p>
+
+  </mat-drawer>
+
+  <mat-toolbar color="primary">
+    <button mat-icon-button
+            color="none"
+            (click)="drawer.toggle()">
+      <mat-icon>vertical_split</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <h1 style="text-align: center; top: 20px">
+    Welcome to you TODO APP! </h1>
+
+</mat-drawer-container>
+
