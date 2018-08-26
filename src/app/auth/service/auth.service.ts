@@ -7,7 +7,7 @@ export class AuthService {
   constructor() {
   }
 
-  authenticate() {
-    return of('user logged in');
+  authenticate(payload) {
+    return of(payload);
   }
 }

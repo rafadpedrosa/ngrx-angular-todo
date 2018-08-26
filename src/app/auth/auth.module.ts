@@ -5,14 +5,14 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { MatModule } from '../shared/module/mat.module';
 import { AuthComponent } from './auth.component';
-import { reducer } from './auth.reducer';
+import { authReducer } from './auth.reducer';
 import { AuthService } from './service/auth.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([{path: '', component: AuthComponent}]),
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot(authReducer),
     MatModule,
     FormsModule
   ],

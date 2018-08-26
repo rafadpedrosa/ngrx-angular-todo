@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { State } from '../reducers';
+import { Authenticate } from './auth.actions';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -12,22 +14,26 @@ import { AuthService } from './service/auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  form = {};
+  email: '';
+  password: '';
 
   constructor(
     private authService: AuthService,
-    private store: Store<State>) {
+    private store: Store<State>,
+    private router: Router) {
   }
 
   ngOnInit() {
-    this.form = {
-      email: '',
-      password: ''
-    };
   }
 
   onAuthenticate() {
-    this.authService.authenticate()
-      .subscribe(console.log, () => alert('login failed'));
+    console.log(this.email, this.password);
+    const saveUserState = user => {
+      this.store.dispatch(new Authenticate(user));
+      this.router.navigate(['private/']);
+    };
+
+    this.authService.authenticate({id: undefined, email: this.email, password: this.password})
+      .subscribe(saveUserState, () => alert('login failed'));
   }
 }

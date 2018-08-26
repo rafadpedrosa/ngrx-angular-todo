@@ -33,10 +33,10 @@
           <input matInput
                  pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
                  class="form-control"
-                 [ngModel]="form.email"
+                 [(ngModel)]="email"
                  type="email"
-                 #email="ngModel"
-                 name="email"
+                 #femail="ngModel"
+                 name="femail"
                  required/>
 
           <mat-icon matSuffix>email</mat-icon>
@@ -50,10 +50,10 @@
           <input type="password"
                  #spy
                  class="form-control"
-                 [ngModel]="form.password"
+                 [(ngModel)]="password"
                  matInput
-                 #password="ngModel"
-                 name="password"
+                 #fpassword="ngModel"
+                 name="fpassword"
                  required/>
 
           <mat-icon matSuffix>lock</mat-icon>
@@ -61,7 +61,7 @@
         </mat-form-field>
 
         <button mat-flat-button
-                [disabled]="email.invalid || password.invalid"
+                [disabled]="femail.invalid || fpassword.invalid"
                 type="submit"
                 class="w-100 my-3">Enter
         </button>
