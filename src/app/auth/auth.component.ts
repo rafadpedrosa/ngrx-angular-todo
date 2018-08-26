@@ -27,8 +27,8 @@ export class AuthComponent implements OnInit {
   }
 
   onAuthenticate() {
-    console.log(this.email, this.password);
     const saveUserState = user => {
+      debugger
       this.store.dispatch(new Authenticate(user));
       this.router.navigate(['private/']);
     };

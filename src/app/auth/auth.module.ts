@@ -5,27 +5,31 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { MatModule } from '../shared/module/mat.module';
 import { AuthComponent } from './auth.component';
+import { AuthGuard } from './auth.guard';
 import { authReducer } from './auth.reducer';
 import { AuthService } from './service/auth.service';
 
-@NgModule({
+@NgModule( {
   imports: [
     CommonModule,
-    RouterModule.forChild([{path: '', component: AuthComponent}]),
-    StoreModule.forRoot(authReducer),
+    RouterModule.forChild( [ { path: '', component: AuthComponent } ] ),
+    StoreModule.forRoot( authReducer ),
     MatModule,
     FormsModule
   ],
   declarations: [
     AuthComponent,
   ],
-  exports: [AuthComponent, MatModule]
-})
+  exports: [ AuthComponent, MatModule ]
+} )
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: AuthModule,
-      providers: [AuthService]
+      providers: [
+        AuthService,
+        AuthGuard
+      ]
     };
   }
 }

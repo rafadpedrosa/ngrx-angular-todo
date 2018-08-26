@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Authenticate, LogOut } from '../auth/auth.actions';
+import { isLoggedOut } from '../auth/auth.selectors';
 import { AuthService } from '../auth/service/auth.service';
 import { State } from '../reducers';
 
