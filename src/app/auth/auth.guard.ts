@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AuthState } from './auth.reducer';
-import { isLoggedIn } from './auth.selectors';
+import { AuthState } from './redux/auth.reducer';
+import { isLoggedIn } from './redux/auth.selectors';
 import { AuthService } from './service/auth.service';
 
 @Injectable()

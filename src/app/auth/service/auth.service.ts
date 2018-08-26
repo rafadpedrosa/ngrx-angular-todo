@@ -3,9 +3,9 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { authenticate, authenticateByToken, logout } from '../../shared/system.endpoints';
-import { Authenticate, LogOut } from '../auth.actions';
-import { AuthState } from '../auth.reducer';
-import { selectToken } from '../auth.selectors';
+import { Authenticate, LogOut } from '../redux/auth.actions';
+import { AuthState } from '../redux/auth.reducer';
+import { selectToken } from '../redux/auth.selectors';
 
 @Injectable()
 export class AuthService implements OnInit {

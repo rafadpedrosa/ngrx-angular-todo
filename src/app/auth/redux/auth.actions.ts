@@ -1,9 +1,8 @@
 import { Action } from '@ngrx/store';
-import { User } from '../model/user.model';
+import { User } from '../../model/user.model';
 
 export enum AuthActionTypes {
-  authenticateAction = '[authenticate] authenticate user',
-  logoutAction = '[logout] logout user',
+  authenticateAction = '[authenticate] authenticate user', logoutAction = '[logout] logout user',
 }
 
 export class Authenticate implements Action {
