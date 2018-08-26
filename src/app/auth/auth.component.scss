@@ -1,8 +1,10 @@
-body {
-  margin: 0 !important;
+section {
+  background-color: #4443bb;
 }
 
-mat-grid-tile {
-  /*padding-top: 0 !important;*/
-  /*margin-top: 0 !important;*/
+.loginForm .ng-touched.ng-invalid .mat-form-field-outline.mat-form-field-outline-thick {
+  color: red !important;
 }
+
+//
+//w-100 pt-md-5 mat-form-field ng-tns-c3-0 mat-primary mat-form-field-type-mat-input mat-form-field-appearance-outline mat-form-field-can-float mat-form-field-should-float mat-form-field-autofilled

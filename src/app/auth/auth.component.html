@@ -1,3 +1,73 @@
-<p>
-  auth works!
-</p>
+<section class="container-fluid h-100">
+  <div class="row font-weight-bold flex-fill d-flex h-100">
+
+    <div class="col-md-5 py-5">
+      <div class="row justify-content-center">
+
+        <div class="col-sm-12 col-md-4 text-center ">
+          <img src="../../assets/todo-icon.png"
+               alt="Todo app">
+        </div>
+
+        <div class="col-sm-12 col-md-7 text-white text-center py-5 mat-display-3">
+          TODO APP
+        </div>
+        <div class="col-sm-10 text-white align-text-bottom text-center py-5">
+          The bla bla bla that serves as description. <br> HEY! Letz talk about good stuff! letz talk about techpix!
+          <br>
+          <mat-icon>photo_camera</mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7 col-sm-12 bg-light py-5">
+
+      <form class="loginForm"
+            (ngSubmit)="onAuthenticate()"
+            #f="ngForm">
+
+        <mat-form-field class="w-100 pt-md-5"
+                        appearance="outline">
+
+          <mat-label>email</mat-label>
+          <input matInput
+                 pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                 class="form-control"
+                 [ngModel]="form.email"
+                 type="email"
+                 #email="ngModel"
+                 name="email"
+                 required/>
+
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-hint>put your login here. Obviously? Yeah... I know you know that...</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="w-100"
+                        appearance="outline">
+
+          <mat-label>Password</mat-label>
+          <input type="password"
+                 #spy
+                 class="form-control"
+                 [ngModel]="form.password"
+                 matInput
+                 #password="ngModel"
+                 name="password"
+                 required/>
+
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-hint>Put your... grr, you know.</mat-hint>
+        </mat-form-field>
+
+        <button mat-flat-button
+                [disabled]="email.invalid || password.invalid"
+                type="submit"
+                class="w-100 my-3">Enter
+        </button>
+      </form>
+      Not an <a href="#"> TODO APP member</a> yet?
+    </div>
+
+  </div>
+</section>
