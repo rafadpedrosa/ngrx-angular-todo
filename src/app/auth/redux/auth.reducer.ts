@@ -1,7 +1,6 @@
 import { User } from '../../model/user.model';
 import { AuthActions, AuthActionTypes } from './auth.actions';
 
-
 export interface AuthState {
   isLoggedIn: boolean;
   user: User;
