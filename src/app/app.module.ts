@@ -1,8 +1,15 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClientModule
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
@@ -15,7 +22,10 @@ import { AuthModule } from './auth/auth.module';
 import { LoginGuard } from './auth/login.guard';
 import { PageNotFoundComponent } from './page-not-found-component/page-not-found-component';
 import { PrivateComponent } from './private/private.component';
-import { metaReducers, reducers } from './reducers';
+import {
+  metaReducers,
+  reducers
+} from './reducers';
 
 const appRoutes: Routes = [
   {
@@ -52,10 +62,11 @@ const appRoutes: Routes = [
     PrivateComponent,
   ],
   imports: [
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    AuthModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
+    AuthModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+    EffectsModule.forRoot([]),
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []

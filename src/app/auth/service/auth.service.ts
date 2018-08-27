@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { authenticate, authenticateByToken, logout } from '../../shared/system.endpoints';
 import { Authenticate, LogOut } from '../redux/auth.actions';
 import { AuthState } from '../redux/auth.reducer';
-import { selectToken } from '../redux/auth.selectors';
 
 @Injectable()
 export class AuthService implements OnInit {
@@ -16,10 +15,20 @@ export class AuthService implements OnInit {
   }
 
   authenticate({ byToken = false, payload }) {
-    const url = byToken ? authenticateByToken : authenticate;
+    const url = byToken
+      ? authenticateByToken
+      : authenticate;
 
     this.http.post(url, payload)
-        .subscribe(this.saveUserState.bind(this), () => alert('login failed'));
+    .subscribe(this.saveUserState.bind(this), error => this.onError(error, 'Login fail'));
+  }
+
+  onError(error, message) {
+    if (error.status === 401) {
+      alert('User not authorized');
+    } else {
+      alert(message);
+    }
   }
 
   logout() {
@@ -27,13 +36,7 @@ export class AuthService implements OnInit {
     this.http.post(logout, { api_key: this.api_key });
   }
 
-  getToken() {
-    return this.store.pipe(select(selectToken));
-  }
-
   ngOnInit(): void {
-    this.getToken()
-        .subscribe(api_key => this.api_key = api_key);
   }
 
   private cleanUserState() {
@@ -42,15 +45,13 @@ export class AuthService implements OnInit {
   }
 
   private saveUserState(response) {
-    localStorage.setItem('api_key', response.api_key);
-
     const user = {
       id: response.userId,
+      username: response.username,
       email: response.email,
       api_key: response.api_key
     };
 
     this.store.dispatch(new Authenticate(user));
-    this.router.navigate([ 'private/' ]);
   }
 }
