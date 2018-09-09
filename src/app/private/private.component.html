@@ -27,7 +27,12 @@
 
 
   <h1 style="text-align: center; top: 20px">
-    Welcome <b>{{ this.user.email }}</b> to you TODO APP! </h1>
+    Welcome <b>{{ username$ | async }}</b> to you TODO APP! </h1>
 
+  <br>
+  <br>
+  <div *ngFor="let task of tasks$ | async as tasks">
+    <app-task [task]="task" ></app-task>
+  </div>
 </mat-drawer-container>
 

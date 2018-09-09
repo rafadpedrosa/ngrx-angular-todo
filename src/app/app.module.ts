@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './page-not-found-component/page-not-found
 import { PrivateComponent } from './private/private.component';
 import { metaReducers, reducers } from './reducers';
 import { CustomSerializer } from './shared/store.router.custom';
+import { TaskEffects } from './task/redux/task.effects';
 import { TaskComponent } from './task/task.component';
 
 const appRoutes: Routes = [
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
     AuthModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     EffectsModule.forRoot([]),
+    EffectsModule.forFeature([ TaskEffects ]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     HttpClientModule,
     BrowserModule,
