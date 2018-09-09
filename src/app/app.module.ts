@@ -1,5 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,7 +19,9 @@ import { LoginGuard } from './auth/login.guard';
 import { PageNotFoundComponent } from './page-not-found-component/page-not-found-component';
 import { PrivateComponent } from './private/private.component';
 import { metaReducers, reducers } from './reducers';
+import { MatModule } from './shared/module/mat.module';
 import { CustomSerializer } from './shared/store.router.custom';
+import { CardTaskComponent } from './task/card-task/card-task.component';
 import { TaskEffects } from './task/redux/task.effects';
 import { TaskComponent } from './task/task.component';
 
@@ -56,6 +59,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     PrivateComponent,
     TaskComponent,
+    CardTaskComponent,
   ],
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -66,6 +70,8 @@ const appRoutes: Routes = [
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     HttpClientModule,
     BrowserModule,
+    MatModule,
+    FormsModule,
     BrowserAnimationsModule,
     !environment.production
       ? StoreDevtoolsModule.instrument()

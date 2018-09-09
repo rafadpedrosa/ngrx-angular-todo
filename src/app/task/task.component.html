@@ -1,4 +1,5 @@
-<p>
-  task works!
-</p>
-<p>oloko: {{ task?.title }}</p>
+<section class="container">
+  <app-card-task *ngFor="let task of tasks"
+                 class="justify-content-center row m-1"
+                 [task]="task"></app-card-task>
+</section>

@@ -33,7 +33,7 @@ export class AuthEffects {
     const userData = localStorage.getItem('user');
     const refreshUser = () => {
       const user = JSON.parse(userData);
-      localStorage.setItem('user', user.payload);
+      localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('api_key', user.api_key);
       return of(new RefreshToken(user));
     };
