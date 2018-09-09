@@ -22,7 +22,6 @@ export class AuthComponent implements OnInit {
       email: this.email,
       password: this.password
     };
-
     this.authService.authenticate({ payload });
   }
 }

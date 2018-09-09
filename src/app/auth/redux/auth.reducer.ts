@@ -21,6 +21,12 @@ export function authReducer(state = initialState, action: AuthActions): AuthStat
         isLoggedIn: true,
         user: action.payload
       };
+    case AuthActionTypes.refreshAction:
+      return {
+        api_key: action.payload.api_key,
+        isLoggedIn: true,
+        user: action.payload
+      };
     case AuthActionTypes.logoutAction:
       return {
         api_key: '',

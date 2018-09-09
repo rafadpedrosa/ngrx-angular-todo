@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
 import { MatModule } from '../shared/module/mat.module';
 import { AuthComponent } from './auth.component';
 import { AuthGuard } from './auth.guard';

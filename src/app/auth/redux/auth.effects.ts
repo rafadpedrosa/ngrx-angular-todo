@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { defer, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AuthActionTypes, Authenticate, LogOut } from './auth.actions';
+import { AuthActionTypes, Authenticate, LogOut, RefreshToken } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -12,8 +12,8 @@ export class AuthEffects {
   authenticate$ = this.actions$.pipe(
     ofType<Authenticate>(AuthActionTypes.authenticateAction),
     tap(action => {
-      console.log('authenticate$');
       localStorage.setItem('user', JSON.stringify(action.payload));
+      localStorage.setItem('api_key', action.payload.api_key);
       this.router.navigate([ 'private/' ]);
     })
   );
@@ -22,8 +22,8 @@ export class AuthEffects {
   logout$ = this.actions$.pipe(
     ofType<LogOut>(AuthActionTypes.logoutAction),
     tap(() => {
-      console.log('logout$');
       localStorage.removeItem('user');
+      localStorage.removeItem('api_key');
       this.router.navigate([ '' ]);
     })
   );
@@ -31,13 +31,15 @@ export class AuthEffects {
   @Effect()
   init$ = defer(() => {
     const userData = localStorage.getItem('user');
-    const authenticate = () => {
+    const refreshUser = () => {
       const user = JSON.parse(userData);
-      return of(new Authenticate(user));
+      localStorage.setItem('user', user.payload);
+      localStorage.setItem('api_key', user.api_key);
+      return of(new RefreshToken(user));
     };
 
     return userData
-      ? authenticate()
+      ? refreshUser()
       : of(new LogOut());
   });
 

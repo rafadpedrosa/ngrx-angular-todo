@@ -24,6 +24,7 @@ export class AuthService implements OnInit {
   }
 
   onError(error, message) {
+    debugger
     if (error.status === 401) {
       alert('User not authorized');
     } else {

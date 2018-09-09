@@ -5,12 +5,14 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AuthState } from './redux/auth.reducer';
 import { isLoggedIn } from './redux/auth.selectors';
-import { AuthService } from './service/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private store: Store<AuthState>, private router: Router, private authService: AuthService) {
+  constructor(
+    private store: Store<AuthState>,
+    private router: Router
+  ) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> {
