@@ -1,0 +1,49 @@
+<mat-card class="card-task col-md-10 col-lg-12">
+  <mat-card-title>
+    {{ task?.title }}
+    <button mat-icon-button
+            class="float-right"
+            color="warn"
+            type="button">
+      <mat-icon aria-label="Remove Task">delete</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+    <p class="description"
+       [class.d-none]="isEditMode"
+       (click)="toggleEditMode();">{{ task?.description }}</p>
+    <span class="description-input"
+          [class.d-none]="!isEditMode">
+      <mat-form-field class="w-100">
+        <textarea matInput
+                  autofocus
+                  class="form-control"
+                  cols="30"
+                  [(ngModel)]="task.description"
+                  rows="10"></textarea>
+      </mat-form-field>
+    </span>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <section [class.d-none]="!isEditMode">
+      <button class="mr-1"
+              mat-flat-button
+              (click)="toggleEditMode()"
+              type="button">Save
+      </button>
+      <button class="mr-1"
+              mat-flat-button
+              (click)="toggleEditMode()"
+              type="button">Cancel
+      </button>
+    </section>
+
+    <button class="mr-1"
+            [class.d-none]="isEditMode"
+            color="accent"
+            mat-flat-button
+            type="button">Done
+    </button>
+
+  </mat-card-actions>
+</mat-card>
