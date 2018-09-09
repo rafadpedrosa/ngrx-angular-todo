@@ -1,5 +1,17 @@
 <section class="container">
-  <app-card-task *ngFor="let task of tasks"
+  <p>
+    <mat-form-field class="w-100"
+                    appearance="outline">
+      <input matInput
+             class="form-control"
+             (keyup)="search($event)"
+             placeholder="Insert the text here"
+             [(ngModel)]="searchInput"/>
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-hint>Find tasks by title</mat-hint>
+    </mat-form-field>
+  </p>
+  <app-card-task *ngFor="let task of filteredTasks"
                  class="justify-content-center row m-1"
                  [task]="task"></app-card-task>
 </section>

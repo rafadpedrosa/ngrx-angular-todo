@@ -29,6 +29,6 @@
   <h1 style="text-align: center; top: 20px">
     Welcome <b>{{ username$ | async }}</b> to you TODO APP! </h1>
 
-  <app-task [tasks]="tasks$ | async"></app-task>
+  <app-task [tasksData]="tasks$ | async"></app-task>
 </mat-drawer-container>
 
